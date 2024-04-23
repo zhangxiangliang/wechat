@@ -1,7 +1,7 @@
 import axios from "axios";
 import { config } from "./config";
 
-export const CLIENT_TYPE_Q0000 = "Q0000";
+export const CLIENT_TYPE_Q0001 = "Q0001";
 
 const fetch = axios.create({
   baseURL: config.app.hookUrl,
@@ -16,7 +16,7 @@ export const sendMessage = async ({
   msg: string;
 }) => {
   const res = await fetch.post("/", {
-    type: CLIENT_TYPE_Q0000,
+    type: CLIENT_TYPE_Q0001,
     data: {
       wxid,
       msg,
