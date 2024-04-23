@@ -10,21 +10,25 @@ export const serverD0003GlodHandler = async (c: Context) => {
   const time = getCurrentTime();
 
   try {
-    const res = await axios.get("https://www.sge.com.cn/graph/quotations");
-    const times = res.data.times || [];
-    const index = times.indexOf(time);
+    const res = await axios.get("https://www.5huangjin.com/data/jin.js");
 
-    if (index === -1) {
-      await sendMessage({ wxid: data.fromWxid, msg: "没有找到 gold 相关信息" });
-    } else {
-      const max = res.data.max || 0;
-      const min = res.data.min || 0;
-      const items = res.data.data || [];
-      await sendMessage({
-        wxid: data.fromWxid,
-        msg: `名称: gold, 现价: ${items[index]}, 最低价: ${min}, 最高价: ${max}`,
-      });
-    }
+    const gds = res.data
+      .split(";")
+      .find((i: string) => i.includes("hq_str_gds_AUTD="));
+
+    const str = gds
+      .replace("var hq_str_gds_AUTD=", "")
+      .replaceAll('"', "")
+      .split(",");
+
+    const now = str[0];
+    const max = str[4];
+    const min = str[5];
+
+    await sendMessage({
+      wxid: data.fromWxid,
+      msg: `名称: gold, 现价: ${now}, 最低价: ${min}, 最高价: ${max}`,
+    });
   } catch (e) {
     await sendMessage({
       wxid: data.fromWxid,
