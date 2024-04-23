@@ -12,21 +12,13 @@ export const serverWechatAuthHandler = async (c: Context) => {
   const { type } = await c.req.json();
 
   switch (type) {
-    case SERVER_TYPE_D0000:
-      return await serverD0000Handler(c);
-    case SERVER_TYPE_D0001:
-      return await serverD0001Handler(c);
-    case SERVER_TYPE_D0002:
-      return await serverD0002Handler(c);
-    case SERVER_TYPE_D0003:
-      return await serverD0003Handler(c);
-    case SERVER_TYPE_D0004:
-      return await serverD0004Handler(c);
-    case SERVER_TYPE_D0005:
-      return await serverD0005Handler(c);
-    case SERVER_TYPE_D0006:
-      return await serverD0006Handler(c);
-    default:
-      return await serverD0000Handler(c);
+    case SERVER_TYPE_D0000: return await serverD0000Handler(c);
+    case SERVER_TYPE_D0001: return await serverD0001Handler(c);
+    case SERVER_TYPE_D0002: return await serverD0002Handler(c);
+    case SERVER_TYPE_D0003: return await serverD0003Handler(c);
+    case SERVER_TYPE_D0004: return await serverD0004Handler(c);
+    case SERVER_TYPE_D0005: return await serverD0005Handler(c);
+    case SERVER_TYPE_D0006: return await serverD0006Handler(c);
+    default: return await serverD0000Handler(c);
   }
 };

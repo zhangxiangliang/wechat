@@ -3,7 +3,7 @@ import axios from "axios";
 import { config } from "@utils/config";
 import { randomSleep } from "@utils/time";
 
-export const WECHAT_TYPE_Q0001 = "Q0001";
+const WECHAT_TYPE_Q0001 = "Q0001";
 
 const fetch = axios.create({
   baseURL: config.app.hookUrl,
@@ -20,10 +20,13 @@ export const sendWechatMessage = async ({ wxid, msg }: sendMessage) => {
 
   await randomSleep();
 
-  return await fetch
+  const res = await fetch
     .post("/", {
       type: WECHAT_TYPE_Q0001,
       data: { wxid, msg },
-    })
-    .catch(() => { });
+    });
+
+  console.log(res.data);
+
+  return res;
 };
