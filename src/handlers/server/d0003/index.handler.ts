@@ -13,7 +13,8 @@ export const serverD0003Handler = async (c: Context) => {
   const { data } = await c.req.json();
 
   const message = String(data.msg || "");
-  console.log(message);
+  console.info(`type: ${SERVER_TYPE_D0003}`);
+  console.info(`message: ${message}`);
 
   if (data.msgType !== MESSAGE_TYPE.Text) {
     return c.json({ type: SERVER_TYPE_D0003, message: "success", handler: "wechat.handler.ts" });

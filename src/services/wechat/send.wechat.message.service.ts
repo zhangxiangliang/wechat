@@ -16,7 +16,7 @@ interface sendMessage {
 }
 
 export const sendWechatMessage = async ({ wxid, msg }: sendMessage) => {
-  console.log(msg);
+  console.info(`${wxid}: ${msg}`);
 
   await randomSleep();
 
