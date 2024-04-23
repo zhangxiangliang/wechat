@@ -17,6 +17,8 @@ export const sendMessage = async ({
   msg: string;
 }) => {
   try {
+    console.log(msg);
+
     await randomSleep();
 
     const res = await fetch.post("/", {
