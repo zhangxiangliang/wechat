@@ -6,7 +6,7 @@ import { getGoldSerive } from "@services/integration/get.gold.service";
 import { sendWechatMessage } from "@services/wechat/send.wechat.message.service";
 
 export const serverD0003GlodHandler = async (c: Context) => {
-  const { body: { data } } = await c.req.json();
+  const { data } = await c.req.json();
   const { now, max, min } = await getGoldSerive();
 
   await sendWechatMessage({
