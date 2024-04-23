@@ -1,6 +1,8 @@
 import { Context } from "hono";
-import { serverD0003StockHandler } from "./stock.handler";
-import { serverD0003GlodHandler } from "./gold.handler";
+
+//
+import { serverD0003GlodHandler } from "@handlers/server/d0003/gold.handler";
+import { serverD0003StockHandler } from "@handlers/server/d0003/stock.handler";
 
 export const SERVER_TYPE_D0003 = "D0003";
 export enum MESSAGE_TYPE {
@@ -8,18 +10,13 @@ export enum MESSAGE_TYPE {
 }
 
 export const serverD0003Handler = async (c: Context) => {
-  const body = await c.req.json();
-  const { data } = body;
+  const { data } = await c.req.json();
 
   const message = String(data.msg || "");
+  console.log(message);
 
   if (data.msgType !== MESSAGE_TYPE.Text) {
-    return c.json({
-      type: SERVER_TYPE_D0003,
-      message: "success",
-      body,
-      handler: "wechat.handler.ts",
-    });
+    return c.json({ type: SERVER_TYPE_D0003, message: "success", handler: "wechat.handler.ts" });
   }
 
   if (message.includes("*stock")) {
@@ -38,10 +35,5 @@ export const serverD0003Handler = async (c: Context) => {
     return await serverD0003GlodHandler(c);
   }
 
-  return c.json({
-    type: SERVER_TYPE_D0003,
-    message: "success",
-    body,
-    handler: "d0003.index.handler.ts",
-  });
+  return c.json({ type: SERVER_TYPE_D0003, message: "success", handler: "d0003.index.handler.ts" });
 };

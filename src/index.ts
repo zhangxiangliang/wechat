@@ -2,9 +2,9 @@ import "reflect-metadata";
 
 import { serve } from "@hono/node-server";
 
-import { fetch } from "./routes";
-import { config } from "./utils/config";
-import { dataSource } from "./utils/database";
+import { fetch } from "@routes";
+import { config } from "@utils/config";
+import { dataSource } from "@utils/database";
 
 const port = config.app.port;
 

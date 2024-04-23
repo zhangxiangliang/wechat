@@ -1,18 +1,15 @@
 import { Context } from "hono";
 
-import { SERVER_TYPE_D0001, serverD0001Handler } from "./d0001.handler";
-import { SERVER_TYPE_D0002, serverD0002Handler } from "./d0002.handler";
-import { SERVER_TYPE_D0003, serverD0003Handler } from "./d0003/index.handler";
-import { SERVER_TYPE_D0004, serverD0004Handler } from "./d0004.handler";
-import { SERVER_TYPE_D0005, serverD0005Handler } from "./d0005.handler";
-import { SERVER_TYPE_D0006, serverD0006Handler } from "./d0006.handler";
-import { SERVER_TYPE_D0000, serverD0000Handler } from "./d0000.handler";
+import { SERVER_TYPE_D0001, serverD0001Handler } from "@handlers/server/d0001/index.handler";
+import { SERVER_TYPE_D0002, serverD0002Handler } from "@handlers/server/d0002/index.handler";
+import { SERVER_TYPE_D0003, serverD0003Handler } from "@handlers/server/d0003/index.handler";
+import { SERVER_TYPE_D0004, serverD0004Handler } from "@handlers/server/d0004/index.handler";
+import { SERVER_TYPE_D0005, serverD0005Handler } from "@handlers/server/d0005/index.handler";
+import { SERVER_TYPE_D0006, serverD0006Handler } from "@handlers/server/d0006/index.handler";
+import { SERVER_TYPE_D0000, serverD0000Handler } from "@handlers/server/d0000/index.handler";
 
 export const serverWechatAuthHandler = async (c: Context) => {
-  const body = await c.req.json();
-  const { type } = body;
-
-  console.log(body);
+  const { type } = await c.req.json();
 
   switch (type) {
     case SERVER_TYPE_D0000:

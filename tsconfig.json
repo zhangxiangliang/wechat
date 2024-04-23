@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
     "target": "ESNext",
     "module": "CommonJS",
     "moduleResolution": "node",
@@ -12,6 +13,11 @@
       "node",
       "jest"
     ],
+    "paths": {
+      "@*": [
+        "src/*"
+      ]
+    },
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx"
   }
