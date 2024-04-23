@@ -11,9 +11,7 @@ const clientUrl = String(
   process.env.CLIENT_URL || `http://127.0.0.1:${port}/client`
 );
 
-const hookUrl = String(
-  process.env.WXHOOK_URL || `http://127.0.0.1:8805/DaenWxHook/client`
-);
+const hookUrl = String(process.env.WXHOOK_URL || "");
 
 export const config = {
   app: {

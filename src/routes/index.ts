@@ -1,11 +1,8 @@
 import "reflect-metadata";
 
-import { Hono, Context } from "hono";
-import { clientRoutes } from "./client.routes";
+import { Hono } from "hono";
 import { serverRoutes } from "./server.routes";
 
-export const app = new Hono()
-  // .route("/client", clientRoutes)
-  .route("/server", serverRoutes);
+export const app = new Hono().route("/server", serverRoutes);
 
 export const fetch = app.fetch;

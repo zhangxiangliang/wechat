@@ -10,3 +10,14 @@ export const randomSleep = async () => {
 export const sleep = (ms: number) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
+
+export const padWithZero = (number: number) => {
+  return number.toString().padStart(2, "0");
+};
+
+export function getCurrentTime() {
+  const now = new Date();
+  const hours = padWithZero(now.getHours());
+  const minutes = padWithZero(now.getMinutes());
+  return `${hours}:${minutes}`;
+}

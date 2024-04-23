@@ -1,8 +1,7 @@
 import { Context } from "hono";
 import { stocks } from "stock-api";
 import { sendMessage } from "../../../utils/wechat";
-
-export const SERVER_TYPE_D0003 = "D0003";
+import { SERVER_TYPE_D0003 } from "./index.handler";
 
 export const serverD0003StockHandler = async (c: Context) => {
   const body = await c.req.json();
@@ -11,7 +10,9 @@ export const serverD0003StockHandler = async (c: Context) => {
   const message = String(data.msg);
 
   const code = message.replace("*stock", "").trim();
-  const stock = await stocks.netease.getStock(code);
+  const stock = await stocks.netease
+    .getStock(code)
+    .catch(() => ({ name: "---" }));
 
   const msg =
     stock.name === "---"
