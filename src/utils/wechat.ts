@@ -1,4 +1,5 @@
 import axios from "axios";
+import { randomSleep, sleep } from "./time";
 import { config } from "./config";
 
 export const CLIENT_TYPE_Q0001 = "Q0001";
@@ -15,13 +16,19 @@ export const sendMessage = async ({
   wxid: string;
   msg: string;
 }) => {
-  const res = await fetch.post("/", {
-    type: CLIENT_TYPE_Q0001,
-    data: {
-      wxid,
-      msg,
-    },
-  });
+  try {
+    await randomSleep();
 
-  return res.data;
+    const res = await fetch.post("/", {
+      type: CLIENT_TYPE_Q0001,
+      data: {
+        wxid,
+        msg,
+      },
+    });
+
+    return res.data;
+  } catch (e) {
+    return null;
+  }
 };
